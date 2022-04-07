@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import url from "../common";
-import { getNetwork } from "../controller/api";
+import { getNetwork,addToken } from "../controller/api";
 
 function Token() {
   const [token, setToken] = useState();
@@ -21,20 +21,15 @@ function Token() {
   }, []);
 
   const handleSubmit =  () => {
-     fetch(`${url}/token/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(token),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert("Success:" + data.toString());
-      })
-      .catch((error) => {
-        alert("Error:" + error.toString());
-      });
+     addToken(token)
+       .then((result) => {
+         if (result) {
+           alert("Success");
+         }
+       })
+       .catch((error) => {
+         alert("Error:" + error.toString());
+       });
   };
 
   return (

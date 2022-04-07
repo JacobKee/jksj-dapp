@@ -1,19 +1,14 @@
 import { useState } from "react";
-import url from "../common"
+import { addNetwork } from "../controller/api";
 
 function Network() {
   const [network, setNetwork] = useState();
   const handleSubmit = async () => {
-    await fetch("http://localhost:8888/network/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(network),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert("Success:" + data.toString());
+    addNetwork(network)
+      .then((result) => {
+        if (result) {
+          alert("Success");
+        }
       })
       .catch((error) => {
         alert("Error:" + error.toString());
