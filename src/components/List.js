@@ -14,15 +14,43 @@ function List() {
   }, []);
 
   return (
-    <div>
-        {token.map((item, index) => (
-          <div key={index}>
-            <h3>{item.name}</h3>
-            <p>{item.balance}</p>
-          </div>
-        ))}
+    <div style={container}>
+      <h1 style={mystyle}>List!</h1>
+      {token.map((item, index) => (
+        <div style={row} key={index}>
+          <p style={block}>{Number(item.balance)}</p>
+          <h3 style={block}>{item.name}</h3>
+        </div>
+      ))}
     </div>
   );
 }
 
 export default List;
+
+const container = {
+  width: "500px",
+  margin: "auto",
+};
+
+const mystyle = {
+  color: "white",
+  backgroundColor: "DodgerBlue",
+  padding: "10px",
+  fontFamily: "Arial",
+};
+
+const row = {
+  alignItems: "center",
+  justifyContent: "center",
+  height: "40px",
+  marginBottom: "15px",
+};
+
+const block = {
+  margin: "10px",
+  fontSize: "20px",
+  height: "25px",
+  display: "inline-block",
+  color: "gray",
+};
