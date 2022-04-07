@@ -1,18 +1,33 @@
 import { useState } from "react";
 import { addNetwork } from "../controller/api";
+import Swal from "sweetalert2";
 
 function Network() {
   const [network, setNetwork] = useState();
   const handleSubmit = async () => {
-    addNetwork(network)
-      .then((result) => {
-        if (result) {
-          alert("Success");
-        }
-      })
-      .catch((error) => {
-        alert("Error:" + error.toString());
-      });
+    Swal.fire({
+      title: "Add Network",
+      text: "Are you sure you want to add this network?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        addNetwork(network)
+          .then((result) => {
+            if (result) {
+              Swal.fire("Success!", "Your network has been added.", "success");
+            }
+          })
+          .catch((error) => {
+            alert("Error:" + error.toString());
+          });
+      }
+    });
+    
   };
 
   return (

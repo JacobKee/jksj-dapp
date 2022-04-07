@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Select from "react-select";
-import url from "../common";
 import { getNetwork,addToken } from "../controller/api";
+import Swal from "sweetalert2";
 
 function Token() {
   const [token, setToken] = useState();
@@ -21,15 +21,28 @@ function Token() {
   }, []);
 
   const handleSubmit =  () => {
-     addToken(token)
-       .then((result) => {
-         if (result) {
-           alert("Success");
-         }
-       })
-       .catch((error) => {
-         alert("Error:" + error.toString());
-       });
+    Swal.fire({
+      title: "Add Token",
+      text: "Are you sure you want to add this token?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        addToken(token)
+          .then((result) => {
+            if (result) {
+              Swal.fire("Success!", "Your token has been added.", "success");
+            }
+          })
+          .catch((error) => {
+            alert("Error:" + error.toString());
+          });
+      }
+    });
   };
 
   return (

@@ -20,6 +20,9 @@ function Main() {
           <li>
             <Link to="/network">Network</Link>
           </li>
+          <li>
+            <Link to="/list">List</Link>
+          </li>
         </ul>
       </nav>
     </div>

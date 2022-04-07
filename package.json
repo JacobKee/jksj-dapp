@@ -12,6 +12,7 @@
         "react-scripts": "5.0.0",
         "react-select": "^5.2.2",
         "serve": "^13.0.2",
+        "sweetalert2": "^11.4.8",
         "web-vitals": "^2.1.0"
     },
     "scripts": {

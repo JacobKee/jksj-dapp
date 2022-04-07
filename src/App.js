@@ -1,24 +1,21 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useState, useEffect } from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
 import Network from "./components/Network";
 import Token from "./components/Token";
-import {getToken} from "./controller/api";
+import List from "./components/List";
 
 function App() {
-  const [token, setToken] = useState([]);
 
-  useEffect(() => {
-    var tokens = [];
-    getToken().then((result) => {
-        result.forEach((item) => tokens.push(item));
-      })
-      .catch((error) => console.log(error));
+  // useEffect(() => {
+  //   var tokens = [];
+  //   getToken().then((result) => {
+  //       result.forEach((item) => tokens.push(item));
+  //     })
+  //     .catch((error) => console.log(error));
 
-    setToken(tokens);
-  }, []);
+  //   setToken(tokens);
+  // }, []);
 
   // const navigate = useNavigate();
 
@@ -32,6 +29,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="token" element={<Token />} />
         <Route path="network" element={<Network />} />
+        <Route path="list" element={<List />} />
       </Routes>
     </BrowserRouter>
   );

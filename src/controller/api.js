@@ -51,3 +51,12 @@ export const addToken = async (data) => {
       return false;
     });
 };
+
+export const getMyToken = async () => {
+  return await fetch(`${url}/web3`)
+    .then((res) => res.json())
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => console.log(error));
+};
