@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
 import { getMyToken } from "../controller/api";
 
+
+
 function List() {
   const [token, setToken] = useState([]);
+  const [windowDimensions, setWindowDimensions] = useState(
+    window.innerWidth,
+    window.innerHeight
+  );
 
   useEffect(() => {
+    window.addEventListener("resize", function handleResize ()  {
+      setWindowDimensions(windowDimensions);
+    });
+
     getMyToken()
       .then((result) => {
         setToken(result);
       })
       .catch((error) => console.log(error));
-
   }, []);
 
   return (
@@ -29,7 +38,7 @@ function List() {
 export default List;
 
 const container = {
-  width: "500px",
+  maxWidth: "500px",
   margin: "auto",
 };
 
